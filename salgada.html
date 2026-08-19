@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="shortcut icon" type="Imagem/png" href="img/negativa.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizzas Salgadas - Pizza Show</title>
+  <link rel="stylesheet" href="estilo5/index.css" />
+</head>
+<body>
+   <header>
+    <img src="img/positiva.png" alt="Pizza Show Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cardapio.html">Cardápio</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="carrinho.html">Carrinho (<span id="carrinho-count">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Pizzas Salgadas</h1>
+    <ul class="produtos-lista">
+      <li>
+        <h3>Calabresa</h3>
+        <img src="img/calabresa.png" alt="Pizza Calabresa" />
+        <p>Deliciosa pizza de calabresa com cebola.</p>
+        <p><strong>R$ 35,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Calabresa', 35)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Frango com Catupiry</h3>
+        <img src="img/frango.png" alt="Pizza Frango com Catupiry" />
+        <p>Frango desfiado com catupiry cremoso.</p>
+        <p><strong>R$ 38,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Frango com Catupiry', 38)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Portuguesa</h3>
+        <img src="img/portuguesa.jpg" alt="Pizza Portuguesa" />
+        <p>Presunto, ovos, cebola e azeitonas.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Portuguesa', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Brocolis</h3>
+        <img src="img/brocolis.png" alt="Pizza Brocolis" />
+        <p>Brócolis, Mussarela, Bacon, Molho de Tomate.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Brocolis', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Margherita</h3>
+        <img src="img/margherita.jpg" alt="Pizza Margherita" />
+        <p>Molho de tomate, mussarela, manjericão.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Margherita', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Palmito</h3>
+        <img src="img/palmito.png" alt="Pizza Palmito" />
+        <p>Palmito, Mussarela e Queijo.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Palmito', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Moda da casa</h3>
+        <img src="img/modao.jpg" alt="Pizza Moda da casa" />
+        <p>Molho de Tomate, Mussarela, Pressunto, Queijo, Ovos, Orégano e Azeitona.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Moda da casa', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Milho</h3>
+        <img src="img/milho.jpg" alt="Pizza Milho" />
+        <p>Molho de Tomate, Milho, Mussarela, Fatias de Tomate, Azeitonas e Orégano.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Milho', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>4 Queijo</h3>
+        <img src="img/queijo.png" alt="4 Queijo" />
+        <p>Mussarela, parmesão, gorgonzola, catupiry.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Milho', 40)">Adicionar ao Carrinho</button>
+      </li>
+      <!-- Pode adicionar mais sabores aqui -->
+    </ul>
+  </main>
+
+  <footer>
+    <p>© 2025 Pizza Show - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function adicionarAoCarrinho(nome, preco) {
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const index = carrinho.findIndex(item => item.nome === nome);
+      if (index > -1) {
+        carrinho[index].quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      alert(nome + ' adicionado ao carrinho!');
+      atualizarContadorCarrinho();
+    }
+
+    function atualizarContadorCarrinho() {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const count = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+      document.getElementById('carrinho-count').textContent = count;
+    }
+
+    atualizarContadorCarrinho();
+  </script>
+</body>
+</html>

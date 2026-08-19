@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bebidas - Pizza Show</title>
+  <link rel="shortcut icon" type="image/png" href="img/negativa.png" />
+  <link rel="stylesheet" href="estilo5/index.css" />
+</head>
+<body>
+
+  <!-- HEADER PADRÃO -->
+  <header>
+    <img src="img/positiva.png" alt="Pizza Show Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cardapio.html">Cardápio</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="carrinho.html">Carrinho (<span id="carrinho-count">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main>
+    <h1>Bebidas</h1>
+    <ul class="produtos-lista">
+      <li>
+        <h3>Suco de Laranja</h3>
+        <img src="img/suco.jpeg" alt="Suco de Laranja" />
+        <p>Suco natural, sem adição de açúcar</p>
+        <p><strong>R$ 5,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Suco de Laranja', 5)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Suco de Maracujá</h3>
+        <img src="img/maracujá.jpg" alt="Suco de Maracujá" />
+        <p>Suco natural, sem adição de açúcar</p>
+        <p><strong>R$ 5,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Suco de Maracujá', 5)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Suco de Limão</h3>
+        <img src="img/limão.avif" alt="Suco de Limão" />
+        <p>Suco natural, sem adição de açúcar</p>
+        <p><strong>R$ 5,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Suco de Limão', 5)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Água Mineral 500ml</h3>
+        <img src="img/agua.jfif" alt="Água" />
+        <p>Água mineral pura e cristalina</p>
+        <p><strong>R$ 4,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Água Mineral 500ml', 4)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Vinho</h3>
+        <img src="img/vinho.jpg" alt="Vinho" />
+        <p>Vinho na taça</p>
+        <p><strong>R$ 10,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Vinho', 10)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Drink</h3>
+        <img src="img/drink.webp" alt="Drink" />
+        <p>Drink Negroni (Contém álcool)</p>
+        <p><strong>R$ 10,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Drink', 10)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Cerveja 500ml</h3>
+        <img src="img/cerveja.webp" alt="Cerveja" />
+        <p>Cerveja gelada</p>
+        <p><strong>R$ 4,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Cerveja 500ml', 4)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Heineken 600ml</h3>
+        <img src="img/heineken.webp" alt="Heineken" />
+        <p>Heineken</p>
+        <p><strong>R$ 6,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Heineken 600ml', 6)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Coca-Cola 350ml</h3>
+        <img src="img/coca.webp" alt="Coca-Cola" />
+        <p>Refrigerante gelado e refrescante</p>
+        <p><strong>R$ 6,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Coca-Cola 350ml', 6)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Coca-Cola 2L</h3>
+        <img src="img/coca2l.webp" alt="Coca-Cola 2L" />
+        <p>Refrigerante gelado e refrescante</p>
+        <p><strong>R$ 8,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Coca-Cola 2L', 8)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Guaraná 350ml</h3>
+        <img src="img/guarana.jpg" alt="Guaraná 350ml" />
+        <p>Refrigerante gelado e refrescante</p>
+        <p><strong>R$ 6,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Guaraná 350ml', 6)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Guaraná 2L</h3>
+        <img src="img/guarana2l.webp" alt="Guaraná 2L" />
+        <p>Refrigerante gelado e refrescante</p>
+        <p><strong>R$ 8,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Guaraná 2L', 8)">Adicionar ao Carrinho</button>
+      </li>
+    </ul>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Pizza Show - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- SCRIPT DE CARRINHO -->
+  <script>
+    function adicionarAoCarrinho(nome, preco) {
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const index = carrinho.findIndex(item => item.nome === nome);
+      if (index > -1) {
+        carrinho[index].quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      alert(nome + ' adicionado ao carrinho!');
+      atualizarContadorCarrinho();
+    }
+
+    function atualizarContadorCarrinho() {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const count = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+      document.getElementById('carrinho-count').textContent = count;
+    }
+
+    atualizarContadorCarrinho();
+  </script>
+</body>
+</html>

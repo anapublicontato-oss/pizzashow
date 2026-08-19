@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="shortcut icon" type="Imagem/png" href="img/negativa.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizzas Doces - Pizza Show</title>
+  <link rel="stylesheet" href="estilo5/index.css" />
+</head>
+<body>
+  <header>
+    <img src="img/positiva.png" alt="Pizza Show Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="cardapio.html">Cardápio</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="carrinho.html">Carrinho (<span id="carrinho-count">0</span>)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Pizzas Doces</h1>
+    <ul class="produtos-lista">
+      <li>
+        <h3>Bis</h3>
+        <img src="img/bis.webp" alt="Bis" />
+        <p>Ganache de Chocolate ao Leite , Bis Esmigalhado com Creme de Leite e Doce de Leite.</p>
+        <p><strong>R$ 32,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Chocolate com Morango', 32)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Romeu e Julieta</h3>
+        <img src="img/romeu.jpg" alt="Romeu e Julieta" />
+        <p>Queijo com goiabada, combinação clássica.</p>
+        <p><strong>R$ 30,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Romeu e Julieta', 30)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Paçoquita</h3>
+        <img src="img/paçoquita.webp" alt="Paçoquita" />
+        <p>Recheio cremoso de doce de leite.</p>
+        <p><strong>R$ 33,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Doce de Leite', 33)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Prestígio</h3>
+        <img src="img/prestigio.png" alt="Prestígio" />
+        <p>Chocolate Branco e Chocolate ao leite.</p>
+        <p><strong>R$ 35,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Prestígio', 33)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Mesclado</h3>
+        <img src="img/mesclado.png" alt="Mesclado" />
+        <p>Ganache de Chocolate Meio Amargo, Beijinho, outra Camada de Ganache de Chocolate meio Amargo , Coco Ralado e Cerejas cremoso de doce de leite.</p>
+        <p><strong>R$ 57,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Mesclado', 33)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>2 Desejos</h3>
+        <img src="img/desejo.png" alt="2 Desejos" />
+        <p>Chocolate ao Leite e Morango.</p>
+        <p><strong>R$ 35,00</strong></p>
+        <button onclick="adicionarAoCarrinho('2 Desejos', 33)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Pizza doce morango e chocolate.</h3>
+        <img src="img/morango.jpg" alt="Pizza doce morango e chocolate." />
+        <p>Recheio de Morango e Chocolate.</p>
+        <p><strong>R$ 33,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Pizza doce morango e chocolate.', 33)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Chocolate com Granulado</h3>
+        <img src="img/granulado.png" alt="Chocolate com Granulado" />
+        <p>Chocolate com Granulado colorido por cima.</p>
+        <p><strong>R$ 40,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Chocolate com Granulado', 33)">Adicionar ao Carrinho</button>
+      </li>
+      <li>
+        <h3>Nutella com Chocolate Branco</h3>
+        <img src="img/nutella.png" alt="Nutella com Chocolate Branco" />
+        <p>Recheio cremoso de Nutella e Chocolate Branco.</p>
+        <p><strong>R$ 45,00</strong></p>
+        <button onclick="adicionarAoCarrinho('Nutella com Chocolate Branco', 33)">Adicionar ao Carrinho</button>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>© 2025 Pizza Show - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function adicionarAoCarrinho(nome, preco) {
+      let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const index = carrinho.findIndex(item => item.nome === nome);
+      if (index > -1) {
+        carrinho[index].quantidade++;
+      } else {
+        carrinho.push({ nome, preco, quantidade: 1 });
+      }
+      localStorage.setItem('carrinho', JSON.stringify(carrinho));
+      alert(nome + ' adicionado ao carrinho!');
+      atualizarContadorCarrinho();
+    }
+
+    function atualizarContadorCarrinho() {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+      const count = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+      document.getElementById('carrinho-count').textContent = count;
+    }
+
+    atualizarContadorCarrinho();
+  </script>
+</body>
+</html>

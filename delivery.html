@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="shortcut icon" type="Imagem/png" href="img/negativa.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizza Show - Delivery</title>
+  <link rel="stylesheet" href="estilo1/index.css" />
+  <link rel="stylesheet" href="estilo3/index.css" />
+</head>
+<body>
+  <!-- HEADER IGUAL AO DA PÁGINA INICIAL -->
+  <header>
+    <div class="container-header">
+      <img src="img/positiva.png" alt="Pizza Show Logo" class="logo" />
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cardapio.html">Cardápio</a></li>
+          <li><a href="delivery.html" class="active">Delivery</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+          <li><a href="carrinho.html">Carrinho (0)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Confirmar Pedido</h1>
+
+    <section class="carrinho-box">
+      <h2>Resumo do pedido</h2>
+      <p>Seu carrinho está vazio.</p>
+    </section>
+
+    <h3>Escolha o método de pagamento</h3>
+    <div class="botoes-pagamento">
+      <a href="https://wa.me/+5517981441624" class="botao-whatsapp" target="_blank">Pagar via WhatsApp</a>
+      <button class="botao-pix" onclick="mostrarQRCode()">Pagar via Pix</button>
+    </div>
+
+    <div id="qrcode-container" class="qrcode-container" style="display: none;">
+      <img src="img/qr-code.png" alt="QR Code Pix" class="qrcode-img" />
+      <p>Escaneie com o app do banco para pagar.</p>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Pizza Show - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    function carregarCarrinhoNoDelivery() {
+      const carrinhoBox = document.querySelector('.carrinho-box');
+      const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+      const mensagemVazio = carrinhoBox.querySelector('p');
+      if (mensagemVazio) mensagemVazio.remove();
+
+      if (carrinho.length === 0) {
+        const vazio = document.createElement('p');
+        vazio.textContent = 'Seu carrinho está vazio.';
+        carrinhoBox.appendChild(vazio);
+        return;
+      }
+
+      const lista = document.createElement('ul');
+      let total = 0;
+
+      carrinho.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}`;
+        lista.appendChild(li);
+        total += item.preco * item.quantidade;
+      });
+
+      const totalElem = document.createElement('p');
+      totalElem.style.marginTop = '15px';
+      totalElem.style.fontWeight = 'bold';
+      totalElem.textContent = `Total: R$ ${total.toFixed(2)}`;
+
+      carrinhoBox.appendChild(lista);
+      carrinhoBox.appendChild(totalElem);
+    }
+
+    function mostrarQRCode() {
+      const container = document.getElementById('qrcode-container');
+      container.style.display = 'block';
+    }
+
+    carregarCarrinhoNoDelivery();
+  </script>
+</body>
+</html>

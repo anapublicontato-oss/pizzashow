@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizza Show - Cardápio</title>
+  <link rel="icon" href="img/negativa.png" />
+  <link rel="stylesheet" href="estilo2/index.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container-header">
+      <img src="img/positiva.png" alt="Pizza Show Logo" class="logo" />
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="cardapio.html" class="active">Cardápio</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
+          <li><a href="carrinho.html">Carrinho (0)</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <h1>🍕 Nosso Cardápio</h1>
+    <p class="subtitulo">Escolha sua categoria favorita ou use a busca abaixo:</p>
+
+    <!-- Barra de busca -->
+    <div class="search-bar">
+      <!-- Barra de pesquisa -->
+      <input type="text" id="search" placeholder="🔎 Buscar no cardápio...">
+      <button id="search-btn">Buscar</button>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards-cardapio">
+      <div class="card">
+        <div class="icon">🍕</div>
+        <h2>Pizzas Salgadas</h2>
+        <p>As clássicas e especiais que você ama.</p>
+        <a href="salgada.html" class="btn">Ver opções</a>
+      </div>
+
+      <div class="card">
+        <div class="icon">🍫</div>
+        <h2>Pizzas Doces</h2>
+        <p>Sobremesas irresistíveis para adoçar seu dia.</p>
+        <a href="doces.html" class="btn">Ver opções</a>
+      </div>
+
+      <div class="card">
+        <div class="icon">🥤</div>
+        <h2>Bebidas</h2>
+        <p>Acompanhamentos perfeitos para sua pizza.</p>
+        <a href="bebidas.html" class="btn">Ver opções</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Função de pesquisa
+    const searchInput = document.getElementById("search");
+    const cards = document.querySelectorAll(".card");
+
+    searchInput.addEventListener("input", () => {
+        const value = searchInput.value.toLowerCase();
+
+        cards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(value) ? "block" : "none";
+        });
+    });
+</script>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 Pizza Show - Todos os direitos reservados.
+  </footer>
+</body>
+</html>

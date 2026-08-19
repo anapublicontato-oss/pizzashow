@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="shortcut icon" type="Imagem/png" href="img/negativa.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrinho - Pizza Show</title>
+  <link rel="stylesheet" href="estilo5/index.css" />
+  <body>
+    <header>
+  <div class="container-header">
+    <img src="img/positiva.png" alt="Pizza Show Logo" class="logo" />
+   <nav>
+  <ul>
+    <li><a href="index.html">Início</a></li>
+    <li><a href="cardapio.html">Cardápio</a></li>
+    <li><a href="delivery.html">Delivery</a></li>
+    <li><a href="cadastro.html">Cadastro</a></li>
+    <li><a href="carrinho.html" class="active">Carrinho <span id="carrinho-count">0</span></a></li>
+  </ul>
+</nav>
+
+  </div>
+</header>
+
+
+  <main>
+  <h1>Seu Carrinho</h1>
+  <ul id="lista-carrinho" class="produtos-lista"></ul>
+  <p class="total" id="total-carrinho"></p>
+  <button id="confirmar-pedido" onclick="confirmarPedido()">Confirmar Pedido</button>
+</main>
+
+<script>
+  function atualizarContadorCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const count = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+    document.getElementById('carrinho-count').textContent = count;
+  }
+
+  function removerItem(nome) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    carrinho = carrinho.filter(item => item.nome !== nome);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    carregarCarrinho();
+    atualizarContadorCarrinho();
+  }
+
+  function carregarCarrinho() {
+    const lista = document.getElementById('lista-carrinho');
+    const totalElem = document.getElementById('total-carrinho');
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    lista.innerHTML = '';
+
+    const btnConfirmar = document.getElementById('confirmar-pedido');
+
+    if (carrinho.length === 0) {
+      lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
+      totalElem.textContent = '';
+      btnConfirmar.disabled = true; // desabilita o botão
+      btnConfirmar.style.opacity = 0.6;
+      return;
+    }
+
+    let total = 0;
+
+    carrinho.forEach(item => {
+      total += item.preco * item.quantidade;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
+        <button class="remover-btn" onclick="removerItem('${item.nome}')">Remover</button>
+      `;
+      lista.appendChild(li);
+    });
+
+    totalElem.textContent = 'Total: R$ ' + total.toFixed(2);
+
+    btnConfirmar.disabled = false; // habilita o botão
+    btnConfirmar.style.opacity = 1;
+  }
+
+  function confirmarPedido() {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    if (carrinho.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+    }
+    window.location.href = "delivery.html";
+  }
+
+  atualizarContadorCarrinho();
+  carregarCarrinho();
+</script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #b30000;
+      margin: 0;
+      padding: 0;
+      background-image: url("img/fundo.jpg");
+    }
+
+ header {
+  background-color: #b30000;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.container-header {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 80px;
+  user-select: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a.active,
+nav ul li a:hover {
+  background-color: #ffd000;
+  color: #b30000;
+  font-weight: 700;
+}
+
+
+    main {
+      max-width: 960px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #b30000;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .produtos-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .produtos-lista li {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 12px 20px;
+      box-shadow: 0 3px 10px rgba(179, 0, 0, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button.remover-btn {
+      background: #b30000;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button.remover-btn:hover {
+      background: #800000;
+    }
+
+        button{
+    background-color: #ffcc00;
+    color: #800000;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-size: 1.3em;
+      font-weight: 700;
+      text-align: right;
+      color: #b30000;
+    }
+
+    footer {
+      background-color: #b30000;
+      text-align: center;
+      padding: 20px 10px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
+    }
+
+  </style>
+</head>
+  <footer>
+    <p>© 2025 Pizza Show - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function atualizarContadorCarrinho() {
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    const count = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+    document.getElementById('carrinho-count').textContent = count;
+  }
+
+  function removerItem(nome) {
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    carrinho = carrinho.filter(item => item.nome !== nome);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    carregarCarrinho();
+    atualizarContadorCarrinho();
+  }
+
+  function carregarCarrinho() {
+    const lista = document.getElementById('lista-carrinho');
+    const totalElem = document.getElementById('total-carrinho');
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    lista.innerHTML = '';
+
+    const btnConfirmar = document.getElementById('confirmar-pedido');
+
+    if (carrinho.length === 0) {
+      lista.innerHTML = '<li>Seu carrinho está vazio.</li>';
+      totalElem.textContent = '';
+      btnConfirmar.disabled = true; // desabilita o botão
+      btnConfirmar.style.opacity = 0.6;
+      return;
+    }
+
+    let total = 0;
+
+    carrinho.forEach(item => {
+      total += item.preco * item.quantidade;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade}
+        <button class="remover-btn" onclick="removerItem('${item.nome}')">Remover</button>
+      `;
+      lista.appendChild(li);
+    });
+
+    totalElem.textContent = 'Total: R$ ' + total.toFixed(2);
+
+    btnConfirmar.disabled = false; // habilita o botão
+    btnConfirmar.style.opacity = 1;
+  }
+
+  function confirmarPedido() {
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio!");
+    return;
+  }
+  window.location.href = "delivery.html"; // vai para delivery apenas se houver itens
+}
+
+
+  atualizarContadorCarrinho();
+  carregarCarrinho();
+  </script>
+</body>
+</html>
