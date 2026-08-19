@@ -1,0 +1,233 @@
+/* Paleta: vermelho, amarelo, branco */
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #b30000 0%, #ffd500 100%);
+    color: #330000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../img/fundo.jpg");
+    background-attachment: fixed;
+  }
+  
+  .container-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  header {
+    background: rgba(179, 0, 0, 0.9);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    position: relative;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo {
+    max-width: 100px;
+    cursor: pointer;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  nav ul li a:hover,
+  nav ul li a.active {
+    background-color: #ffd500;
+    color: #b30000;
+  }
+  
+  main {
+    flex: 1;
+    max-width: 900px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    color: #b30000;
+    margin-bottom: 15px;
+  }
+  
+  .hero h1 span {
+    color: #e9c40e;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #330000;
+  }
+  
+  .btn-primary {
+    background-color: #ffd500;
+    color: #b30000;
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.3em;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.4s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(179,0,0,0.4);
+  }
+  
+  .btn-primary:hover {
+    background-color: #e6c300;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(179,0,0,0.6);
+  }
+  
+  .promo {
+    margin-top: 50px;
+  }
+  
+  .promo h2 {
+    font-size: 2em;
+    color: #b30000;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .promo-cards {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .promo-card {
+    background: #fff5cc;
+    border: 3px solid #b30000;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 250px;
+    box-shadow: 0 4px 10px rgba(179,0,0,0.25);
+    transition: transform 0.3s ease;
+    cursor: default;
+  }
+  
+  .promo-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(179,0,0,0.5);
+  }
+  
+  .promo-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #b30000;
+    font-size: 1.4em;
+  }
+  
+  .promo-card p {
+    font-size: 1.1em;
+    color: #994444;
+    font-weight: 600;
+  }
+  
+  .sobre {
+    margin-top: 60px;
+    padding-bottom: 40px;
+    color: #330000;
+  }
+  
+  .sobre h2 {
+    font-size: 2em;
+    color: #b30000;
+    margin-bottom: 15px;
+  }
+  
+  .sobre p {
+    font-size: 1.15em;
+    max-width: 700px;
+    margin: 0 auto 20px;
+    line-height: 1.5;
+  }
+  
+  .sobre ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .sobre ul li {
+    background: #ffd500;
+    color: #b30000;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(179,0,0,0.3);
+    flex: 1 1 200px;
+  }
+  
+  footer {
+    background: #b30000;
+    color: #fff;
+    padding: 18px 10px;
+    text-align: center;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 -3px 8px rgba(0,0,0,0.3);
+    font-weight: 600;
+    font-size: 1em;
+    z-index: 50;
+  }
+  
+  /* Responsividade */
+  
+  @media (max-width: 700px) {
+    nav ul {
+      gap: 15px;
+    }
+  
+    .promo-cards {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .sobre ul li {
+      flex: 1 1 100%;
+    }
+  }
+  
