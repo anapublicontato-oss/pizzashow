@@ -1,0 +1,146 @@
+/* RESET E BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background-color: #b00000;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.logo {
+  max-width: 100px;
+  cursor: pointer;
+  height: auto;
+}
+
+
+/* NAVEGAÇÃO */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a.active,
+nav a:hover {
+  background-color: #ffcc00;
+  color: #800000;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  text-align: center;
+  padding: 60px 20px 40px 20px;
+  background-image: url('../imagens/fundo.png'); /* opcional: use um fundo se quiser */
+  background-repeat: repeat;
+}
+
+main h1 {
+  font-size: 2.5em;
+  color: #b00000;
+  margin-bottom: 30px;
+}
+
+main h3 {
+  color: #b00000;
+  font-size: 1.5em;
+  margin: 30px 0 15px;
+}
+
+/* CARRINHO */
+.carrinho-box {
+  background-color: #fff7cc;
+  border: 2px solid #b00000;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+  text-align: left;
+}
+
+.carrinho-box h2 {
+  color: #b00000;
+  margin-bottom: 10px;
+}
+
+/* BOTÕES */
+.botoes-pagamento {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.botao-whatsapp,
+.botao-pix {
+  background-color: #ffcc00;
+  color: #800000;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.botao-whatsapp:hover,
+.botao-pix:hover {
+  background-color: #ffc107;
+}
+
+/* QR CODE */
+.qrcode-container {
+  margin-top: 20px;
+}
+
+.qrcode-img {
+  width: 200px;
+  height: 200px;
+}
+
+/* FOOTER */
+footer {
+  background-color: #b00000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  margin-top: auto;
+}
